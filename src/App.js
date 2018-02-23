@@ -18,4 +18,19 @@ class App extends Component {
   }
 }
 
+var API_KEY = 'ce44104936609112bb5779658006dc572e689f015289427d234f57e595bdc3f7';
+
+var url = 'https://apifootball.com/api/?action=get_leagues&country_id=174&APIkey=' + API_KEY;
+
+
+fetch(url)
+  .then((response) => {
+    return response.json();
+
+  })
+  .then((json => { 
+    console.log(json);
+
+  }))
+
 export default App;
