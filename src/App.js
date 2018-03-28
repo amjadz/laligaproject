@@ -6,31 +6,47 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>Welcome to the LaLiga app</h1>
+
       </div>
+  
     );
   }
 }
 
-var API_KEY = 'ce44104936609112bb5779658006dc572e689f015289427d234f57e595bdc3f7';
-
-var url = 'https://apifootball.com/api/?action=get_leagues&country_id=174&APIkey=' + API_KEY;
 
 
-fetch(url)
+
+
+var APP_KEY = '7EHgp9slgdmshElkA44faMEYFkcNp13wIVujsnW6VgtMGIfly4'
+var url = 'https://heisenbug-la-liga-live-scores-v1.p.mashape.com/api/laliga/table'
+
+var headers = new Headers();
+headers.append('X-Mashape-Key', APP_KEY);
+
+var request = new Request(url, {
+  method: 'GET',
+  headers: headers,
+  mode: 'cors'
+})
+
+
+fetch(request)
   .then((response) => {
     return response.json();
 
   })
   .then((json => { 
-    console.log(json);
+    console.log(json)
+    this.setState({
+      team: json.records[1].team
+    });
 
   }))
+  // .catch((error ) => {
+  //   window.alert("An error has occoured");
+
+
+  // });
 
 export default App;
